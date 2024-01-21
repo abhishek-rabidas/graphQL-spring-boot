@@ -18,6 +18,6 @@ type Query {
 }
 
 type Mutation {
-    saveRecord (details : String!, userId : Int) : Record!
+    saveRecord (details : String!, userId : Int!) : Record!
     addUser (name : String!, address: String!) : User!
 }

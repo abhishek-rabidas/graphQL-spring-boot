@@ -6,7 +6,9 @@ import graphql.example.java.models.User;
 import graphql.example.java.models.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RequestResolverService {
@@ -26,5 +28,26 @@ public class RequestResolverService {
 
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    public Record saveRecord(String details, Integer userId) {
+        User user = userRepository.findById(userId).get();
+
+        if (user == null)  {
+            throw new RuntimeException("Record can't be saved, because user not found");
+        }
+
+        Record record = new Record();
+        record.setDetails(details);
+        record.setSavedOn(LocalDate.now());
+        record.setCreatedBy(user);
+        return recordRepository.save(record);
+    }
+
+    public User saveUser(String name, String address) {
+        User user = new User();
+        user.setName(name);
+        user.setAddress(address);
+        return userRepository.save(user);
     }
 }
