@@ -1,0 +1,13 @@
+type Record {
+    id : ID!
+    details : String!
+    savedOn : String
+    createdBy : User!
+}
+
+type User {
+    id : ID!
+    name : String!
+    address : String
+    records : [Record]
+}
