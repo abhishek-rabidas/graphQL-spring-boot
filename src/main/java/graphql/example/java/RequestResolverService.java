@@ -41,7 +41,12 @@ public class RequestResolverService {
         record.setDetails(details);
         record.setSavedOn(LocalDate.now());
         record.setCreatedBy(user);
-        return recordRepository.save(record);
+        recordRepository.save(record);
+
+        user.getRecords().add(record);
+        userRepository.save(user);
+
+        return record;
     }
 
     public User saveUser(String name, String address) {
