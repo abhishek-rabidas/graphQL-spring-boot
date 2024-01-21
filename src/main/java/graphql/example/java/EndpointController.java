@@ -26,6 +26,107 @@ public class EndpointController {
         return service.getUsers();
     }
 
+    /*
+    query {
+
+    getUsers {
+        name,
+        records {
+            id,
+            details,
+            savedOn
+        }
+    }
+
+    getRecords {
+        details,
+        createdBy {
+            name
+        }
+    }
+}
+
+Response:
+{
+    "data": {
+        "getUsers": [
+            {
+                "name": "Abhishek",
+                "records": [
+                    {
+                        "id": "2",
+                        "details": "This is a post",
+                        "savedOn": "2024-01-21"
+                    },
+                    {
+                        "id": "3",
+                        "details": "This is a post",
+                        "savedOn": "2024-01-21"
+                    }
+                ]
+            },
+            {
+                "name": "Abhishek",
+                "records": [
+                    {
+                        "id": "5",
+                        "details": "New post",
+                        "savedOn": "2024-01-21"
+                    }
+                ]
+            },
+            {
+                "name": "Abhishek",
+                "records": [
+                    {
+                        "id": "1",
+                        "details": "This is a post",
+                        "savedOn": "2024-01-21"
+                    },
+                    {
+                        "id": "4",
+                        "details": "This is a post",
+                        "savedOn": "2024-01-21"
+                    }
+                ]
+            }
+        ],
+        "getRecords": [
+            {
+                "details": "This is a post",
+                "createdBy": {
+                    "name": "Abhishek"
+                }
+            },
+            {
+                "details": "This is a post",
+                "createdBy": {
+                    "name": "Abhishek"
+                }
+            },
+            {
+                "details": "This is a post",
+                "createdBy": {
+                    "name": "Abhishek"
+                }
+            },
+            {
+                "details": "This is a post",
+                "createdBy": {
+                    "name": "Abhishek"
+                }
+            },
+            {
+                "details": "New post",
+                "createdBy": {
+                    "name": "Abhishek"
+                }
+            }
+        ]
+    }
+}
+     */
+
     @MutationMapping
     public Record saveRecord(@Argument String details, @Argument Integer userId) {
         return service.saveRecord(details, userId);
@@ -35,4 +136,44 @@ public class EndpointController {
     public User addUser(@Argument String name, @Argument String address) {
         return service.saveUser(name, address);
     }
+
+    /*
+    mutation {
+    addUser(name : "Raj", address : "Delhi, India") {
+        id
+    }
+}
+
+Response :
+{
+    "data": {
+        "addUser": {
+            "id": "4"
+        }
+    }
+}
+
+mutation {
+    saveRecord (details : "Secret information", userId: 4) {
+        createdBy {
+            id,
+            name
+        }
+    }
+}
+
+Response:
+{
+    "data": {
+        "saveRecord": {
+            "createdBy": {
+                "id": "4",
+                "name": "Raj"
+            }
+        }
+    }
+}
+
+
+     */
 }
