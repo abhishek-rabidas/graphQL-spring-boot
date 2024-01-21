@@ -1,6 +1,6 @@
 package graphql.example.java;
 
-import graphql.example.java.models.Record;
+import graphql.example.java.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -30,7 +30,7 @@ public class EndpointController {
     }
 
     @MutationMapping
-    public ResponseEntity<Object> addUser(@Argument String name, @Argument String address) {
+    public ResponseEntity<User> addUser(@Argument String name, @Argument String address) {
         return ResponseEntity.ok(service.saveUser(name, address));
     }
 }

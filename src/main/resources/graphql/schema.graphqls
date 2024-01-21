@@ -6,7 +6,7 @@ type Record {
 }
 
 type User {
-    id : ID!
+    id : ID
     name : String!
     address : String
     records : [Record]
