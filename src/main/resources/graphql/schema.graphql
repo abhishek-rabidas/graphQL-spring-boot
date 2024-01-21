@@ -11,3 +11,13 @@ type User {
     address : String
     records : [Record]
 }
+
+type Query {
+    getRecords : [Record]!
+    getUsers : [User]!
+}
+
+type Mutation {
+    saveRecord (details : String!, userId : Int) : Record!
+    addUser (name : String!, address: String!) : User!
+}
